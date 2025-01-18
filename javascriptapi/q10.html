@@ -1,0 +1,75 @@
+<!-- 10. Create a Weather App
+Assignment:
+Build a simple weather application that fetches and displays weather data.
+Instructions:
+1. Create an input field to accept a city name and a button to fetch the weather data.
+2. Use the OpenWeatherMap API to get the weather data for the entered city when the button
+is clicked.
+3. Display the temperature, weather condition, and city name on the web page. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Data</title>
+</head>
+<body>
+    <h1>Weather Information</h1>
+    
+    <label for="city">Enter City Name:</label>
+    <input type="text" id="city" name="city" required><br><br>
+
+    <button id="getWeatherBtn">Get Weather</button>
+
+    <div id="weatherResult">
+        <p id="temperature"></p>
+        <p id="description"></p>
+    </div>
+
+    <script>
+        
+        async function getWeather(city) {
+            try {
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=1b274b6a8139a5eeae5571f298f7258e&units=metric`);
+                if(!response.ok){
+                    throw new Error("error getting fetching response");
+                    
+                }
+                const data = await response.json();
+                console.log(data)
+
+                if (response.ok) {
+                   
+                    const temperature = data.main.temp;
+                    const description = data.weather[0].description;
+
+                    console.log(`Temperature: ${temperature}°C`);
+                    console.log(`Weather Description: ${description}`);
+
+                    
+                    document.getElementById('temperature').innerText = `Temperature: ${temperature}°C`;
+                    document.getElementById('description').innerText = `Weather: ${description}`;
+                } else {
+                    console.error('Error fetching weather data:', data.message);
+                    alert('Failed to fetch weather data. Please check the city name or try again later.');
+                }
+            } catch (error) {
+                console.error('Request failed', error);
+                alert('An error occurred while fetching the weather data.');
+            }
+        }
+
+        
+        document.getElementById('getWeatherBtn').addEventListener('click', function() {
+            const city = document.getElementById('city').value;
+            if (city) {
+                getWeather(city);
+            } else {
+                alert('Please enter a city name.');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!-- 12. Caching API Responses
+Assignment:
+Implement basic caching for API responses.
+Instructions:
+1. Fetch data from the JSONPlaceholder API.
+2. Store the response data in a variable or use local storage to cache the data.
+3. Check if the data is cached before making a new request -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caching API Responses</title>
+</head>
+<body>
+    <h1>Posts</h1>
+    <div id="postsContainer"></div>
+
+    <script>
+        let cachedPosts = null; 
+
+       
+        async function fetchPosts() {
+            if (cachedPosts) {
+                console.log("Using cached data.");
+                displayPosts(cachedPosts); 
+                return;
+            }
+
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+                const data = await response.json();
+
+              
+                cachedPosts = data;
+
+                displayPosts(data);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        }
+
+        
+        function displayPosts(posts) {
+            const postsContainer = document.getElementById('postsContainer');
+            postsContainer.innerHTML = ''; 
+
+            posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.innerHTML = `<h3>${post.title}</h3><p>${post.body}</p>`;
+                postsContainer.appendChild(postElement);
+            });
+        }
+
+        fetchPosts();
+    </script>
+</body>
+</html>

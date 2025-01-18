@@ -1,0 +1,46 @@
+<!-- // 3. Search Functionality
+// Assignment:
+// Implement a search feature that fetches data based on user input.
+// Instructions:
+// 1. Create a search input field and a button on your HTML page.
+// 2. When the button is clicked, fetch data from the JSONPlaceholder API based on the input
+// (e.g., search for posts by user ID).
+// 3. Display the filtered results on the web page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="search" id="search" placeholder="enter user id">
+    <button type="submit"id="button">sumbit</button>
+    <div id="container"></div>
+    <script>
+        const api="https://jsonplaceholder.typicode.com/posts"
+const fetchapi=async()=>{
+    const userid=document.getElementById('search').value
+    console.log(userid)
+    try{
+    const response=await fetch(api)
+    const data=await response.json()
+    console.log(data)
+    data.forEach(element => {
+        if(userid===String(element.userId)){
+            document.getElementById("container").innerHTML+=`<p>title:${element.title}</p>`
+        
+        }
+        
+    });
+
+    }
+    catch(error){
+        console.log("error loading data",error)
+    }
+}
+
+        document.getElementById('button').addEventListener("click",fetchapi)
+    </script>
+</body>
+</html>
