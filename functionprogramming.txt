@@ -1,0 +1,14 @@
+Principles of Functional Programming in JavaScript
+Functional programming (FP) is a programming paradigm that emphasizes pure functions, immutability, and first-class functions. It avoids side effects and encourages declarative coding.
+
+Pure Functions – Functions always return the same output for the same input and do not modify external state, making them predictable and testable.
+
+Immutability – Data should not be changed after creation. Instead of modifying existing objects, new copies are created, ensuring consistency and avoiding unintended side effects.
+
+First-Class Functions – Functions are treated as values, meaning they can be assigned to variables, passed as arguments, and returned from other functions.
+
+Higher-Order Functions – Functions that take other functions as arguments or return them, enabling abstraction and code reusability.
+
+Declarative Code – Instead of specifying "how" to do something (imperative approach), FP focuses on "what" to do using functions like map, filter, and reduce.
+
+Functional programming in JavaScript improves code readability, maintainability, and reliability by reducing side effects and enhancing modularity.
