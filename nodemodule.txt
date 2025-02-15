@@ -1,0 +1,9 @@
+CommonJS (CJS) is the traditional module system in Node.js, where modules are loaded synchronously using require(), and functionality is exported using module.exports. It is widely used in server-side applications and allows dynamic imports.
+
+ES Modules (ESM), introduced in ES6, use import and export for module handling. They support asynchronous loading, making them more suitable for modern JavaScript applications, especially in browsers.
+
+Key Differences:
+Syntax: CommonJS uses require(), while ES Modules use import/export.
+Loading: CommonJS loads modules synchronously, while ES Modules load asynchronously.
+Configuration: CommonJS is the default in Node.js, whereas ES Modules require specific settings like the .mjs extension or "type": "module" in package.json.
+While CommonJS remains widely used, ES Modules are the future standard for JavaScript, providing better compatibility with modern web development
