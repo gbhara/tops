@@ -1,0 +1,39 @@
+<!-- 2. Display Data on a Web Page
+Assignment:
+Fetch data from an API and display it on a web page.
+Instructions:
+1. Create a simple HTML page with a <div> to display the data.
+2. Use the Fetch API to get data from the JSONPlaceholder API.
+3. Loop through the response and create HTML elements to display the titles and bodies of the
+posts in the <div>. -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="container"></div>
+
+        <script>
+            const api="https://jsonplaceholder.typicode.com/posts"
+            const fetchapi=async()=>{
+            try{
+            const response=await fetch(api)
+            const data=await response.json()
+            data.forEach(element => {
+            document.getElementById("container").innerHTML+=`<p>title:${element.title}</p>`
+        
+         });
+
+        }
+        catch(error){
+            console.log("error loading data",error)
+         }
+    }
+    fetchapi()
+
+        </script>
+    </body>
+    </html>
